@@ -1,2 +1,2 @@
 # epic-to-do-app
-The most epic To-Do app ever created throughout history of mankind.
+The most epic To-Do app ever created throughout the history of mankind.
