@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Marat Byte">
+    <meta name="description" content="The most epic to-do app">
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Tangerine:wght@700&display=swap" rel="stylesheet">  
+    
+    <title>Epic To-do App</title>
+  </head>
+  <body>
+    <div id="container">
+      <!-- Title -->
+      <h1 id="to-do-title">Dragons to Slay:</h1>
+      
+      <!-- To-do list -->
+      <ul id="to-do-list">
+        <li>
+          <input type="checkbox" id="0">
+          <label for="0">Smaug</label>
+          <button class="delete-button">
+            <img src="images/trash.png">
+          </button>
+        </li>
+        <li>
+          <input type="checkbox" id="1">
+          <label for="1">Viserion</label>
+          <button class="delete-button">
+            <img src="images/trash.png">
+          </button>
+        </li>
+      </ul>
+      
+      <!-- Append task field -->
+      <form id="to-do-append">
+        <input type="text" name="task" placeholder="Add another dragon" autofocus>
+        <button>Add</button>
+      </form>
+    </div>
+  </body>
+</html>
+
