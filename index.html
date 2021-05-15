@@ -18,18 +18,18 @@
       
       <!-- To-do list -->
       <ul id="to-do-list">
-        <li>
+        <li class="to-do-item" id="item-0">
           <input type="checkbox" id="0">
           <label for="0">Smaug</label>
           <button class="delete-button">
-            <img src="images/trash.png">
+            <img src="images/remove.png">
           </button>
         </li>
-        <li>
+        <li class="to-do-item" id="item-1">
           <input type="checkbox" id="1">
           <label for="1">Viserion</label>
           <button class="delete-button">
-            <img src="images/trash.png">
+            <img src="images/remove.png">
           </button>
         </li>
       </ul>
@@ -37,7 +37,9 @@
       <!-- Append task field -->
       <form id="to-do-append">
         <input type="text" name="task" placeholder="Add another dragon" autofocus>
-        <button>Add</button>
+        <button id="add-button">
+          <img src="images/plus.png">
+        </button>
       </form>
     </div>
   </body>
