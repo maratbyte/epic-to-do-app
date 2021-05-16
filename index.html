@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+    <!-- meta --> 
     <meta charset="UTF-8">
     <meta name="author" content="Marat Byte">
     <meta name="description" content="The most epic to-do app">
 
+    <!-- Styles and Fonts -->
     <link rel="stylesheet" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Tangerine:wght@700&display=swap" rel="stylesheet">  
@@ -12,7 +14,9 @@
     <title>Epic To-do App</title>
   </head>
   <body>
+    <!-- Main content -->
     <div id="container">
+      
       <!-- Title -->
       <h1 id="to-do-title">Dragons to Slay:</h1>
       
@@ -23,14 +27,17 @@
       
       <!-- Append task field -->
       <form id="to-do-append" onsubmit="return false">
-        <input id="append-input" type="text" name="task" placeholder="Add another dragon" autofocus>
+        <input id="append-input" type="text" placeholder="Add another dragon" autofocus>
         <button id="append-button">
           <img src="images/plus.png">
         </button>
       </form>
-      
+
     </div>
+
+    <!-- JS script -->
     <script src="scripts/script.js"></script>
+
   </body>
 </html>
 
