@@ -17,31 +17,20 @@
       <h1 id="to-do-title">Dragons to Slay:</h1>
       
       <!-- To-do list -->
-      <ul id="to-do-list">
-        <li class="to-do-item" id="item-0">
-          <input type="checkbox" id="0">
-          <label for="0">Smaug</label>
-          <button class="delete-button">
-            <img src="images/remove.png">
-          </button>
-        </li>
-        <li class="to-do-item" id="item-1">
-          <input type="checkbox" id="1">
-          <label for="1">Viserion</label>
-          <button class="delete-button">
-            <img src="images/remove.png">
-          </button>
-        </li>
+      <ul>
+        
       </ul>
       
       <!-- Append task field -->
-      <form id="to-do-append">
-        <input type="text" name="task" placeholder="Add another dragon" autofocus>
-        <button id="add-button">
+      <form id="to-do-append" onsubmit="return false">
+        <input id="append-input" type="text" name="task" placeholder="Add another dragon" autofocus>
+        <button id="append-button">
           <img src="images/plus.png">
         </button>
       </form>
+      
     </div>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
 
