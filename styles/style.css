@@ -1,0 +1,101 @@
+/* General styles */
+html {
+    background-color: rgb(240, 240, 240);
+}
+
+#container {
+    height: 97vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Main title */
+#to-do-title {
+    font-family: 'Cinzel', serif;
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+/* To-Do List */
+ul {
+    list-style-type: none;
+    font-family: 'Tangerine', cursive;
+    font-size: 50px;
+}
+
+.to-do-item {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid rgb(230, 230, 230);
+    padding: 10px;
+}
+
+li:first-child {
+    border-top: solid rgb(230, 230, 230);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 10px;
+}
+
+input[type="checkbox"]:checked + label {
+    color:rgb(200, 200, 200);
+}
+
+label {
+    position: relative;
+}
+
+/* Had to make a custom strikethrough effect,
+   since default one didn't work well with the font I used */
+input[type="checkbox"]:checked + label::before {
+    content: "";
+    border-bottom: 2px solid rgb(200, 200, 200);
+    position: absolute;
+    left: 0;
+    width: 105%;
+    top: 58%;
+}
+
+.delete-button {
+    border: none;
+    background: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* To-Do Append */
+input[type="text"] {
+    font-family: 'Tangerine', cursive;
+    font-size: 40px;
+    width: 565px;
+    height: 50px;
+    margin-left: 30px;
+    text-indent: 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+#to-do-append {
+    width: 640px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#append-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    margin-bottom: 3px;
+}
