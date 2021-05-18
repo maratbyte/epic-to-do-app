@@ -7,13 +7,9 @@ function listReducer(tasks = [], action) {
                 id: tasks.length ? id : 0,
                 value: action.task
             });
-            console.log(tasks);
             return tasks;
         case "deleteTask":
-            tasks = tasks.filter(task => task.id !== action.id);
-            console.log(tasks);
-            return tasks;
-            // return tasks.filter(task => task.id !== action.id);
+            return tasks.filter(task => task.id !== action.id);
         default:
             return tasks;
     }
@@ -22,9 +18,7 @@ function listReducer(tasks = [], action) {
 
 // => Rendering function <=
 
-// The app works fine if I use this rendering function
-// and set "onsubmit='return false'" attribute on adding task form.
-// On the other hand, if I do not set this attribute, it doesn't work.
+// Version 1
 function listRender1() {
     const tasks = store.getState();
     const html = tasks.map(task => 
@@ -43,24 +37,38 @@ function listRender1() {
     });
 }
 
-// Doesn't work. Why?
+// Version 2
 function listRender2() {
     const tasks = store.getState();
-    for (let task of tasks) {
+    const items = list.querySelectorAll("li");
+    
+    // if the state changed
+    if (tasks.length != items.length) {
+
+        // check if there's a deleted task
+        const ids = tasks.map(task => task.id);
+        for (let item of items) {
+            const id = parseInt(item.getAttribute("id"), 10);
+            if (!ids.includes(id)) {
+                item.remove();
+                return;
+            }
+        }
+
+        // if nothing was deleted, that means we need to add a new task
+        const task = tasks[tasks.length - 1];
+        console.log(task);
         const item = document.createElement("li");
         item.setAttribute("class", "to-do-item");
         item.setAttribute("id", task.id.toString());
-
         // checkbox
         const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
         item.appendChild(checkbox);
-
         // label
         const label = document.createElement("label");
         label.textContent = task.value;
         item.appendChild(label);
-
         // delete button
         const del = document.createElement("button");
         del.setAttribute("class", "delete-button");
@@ -81,12 +89,13 @@ const store = Redux.createStore(listReducer);
 
 // binding elements
 const list = document.querySelector("ul");
-const append = document.getElementById("append-button");
+const form = document.getElementById("to-do-append");
 const input = document.getElementById("append-input");
 
 
 // setting functionality to the add-task form
-append.addEventListener("click", () => {
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
     const task = input.value;
     input.value = "";
     store.dispatch({task, type: "addTask"});
