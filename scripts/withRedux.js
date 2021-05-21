@@ -17,28 +17,7 @@ function listReducer(tasks = [], action) {
 
 
 // => Rendering function <=
-
-// Version 1
-function listRender1() {
-    const tasks = store.getState();
-    const html = tasks.map(task => 
-        `<li id="${task.id}" class="to-do-item">
-            <input type="checkbox">
-            <label>${task.value}</label>
-            <button class="delete-button">
-                <img src="images/remove.png">
-            </button>
-        </li>`).join("");
-    list.innerHTML = html;
-    list.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", () => {
-            store.dispatch({id: parseInt(button.parentElement.getAttribute("id"), 10), type: "deleteTask"});
-        });
-    });
-}
-
-// Version 2
-function listRender2() {
+function listRender() {
     const tasks = store.getState();
     const items = list.querySelectorAll("li");
     
@@ -57,7 +36,6 @@ function listRender2() {
 
         // if nothing was deleted, that means we need to add a new task
         const task = tasks[tasks.length - 1];
-        console.log(task);
         const item = document.createElement("li");
         item.setAttribute("class", "to-do-item");
         item.setAttribute("id", task.id.toString());
@@ -103,8 +81,8 @@ form.addEventListener("submit", (event) => {
 
 
 // Rendering the initial state
-listRender1();
+listRender();
 
 
 // Using subscribe() method to update the UI in response to state changes
-store.subscribe(listRender1);
+store.subscribe(listRender);
