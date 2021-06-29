@@ -1,17 +1,19 @@
 /* General styles */
-html {
+body {
     background-color: rgb(240, 240, 240);
-}
-
-#container {
-    height: 97vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
 /* Main title */
-#to-do-title {
+h1 {
     font-family: 'Cinzel', serif;
     font-size: 100px;
     margin-bottom: 0;
@@ -24,7 +26,7 @@ ul {
     font-size: 50px;
 }
 
-.to-do-item {
+li {
     width: 600px;
     display: flex;
     align-items: center;
@@ -36,12 +38,12 @@ li:first-child {
     border-top: solid rgb(230, 230, 230);
 }
 
-input[type="checkbox"] {
+li input {
     transform: scale(1.5);
     margin: 10px;
 }
 
-input[type="checkbox"]:checked + label {
+li input:checked + label {
     color:rgb(200, 200, 200);
 }
 
@@ -51,7 +53,7 @@ label {
 
 /* Had to make a custom strikethrough effect,
    since default one didn't work well with the font I used */
-input[type="checkbox"]:checked + label::before {
+li input:checked + label::before {
     content: "";
     border-bottom: 2px solid rgb(200, 200, 200);
     position: absolute;
@@ -60,17 +62,21 @@ input[type="checkbox"]:checked + label::before {
     top: 58%;
 }
 
-.delete-button {
-    border: none;
-    background: none;
+li button {
     width: 24px;
     height: 24px;
-    cursor: pointer;
     margin-left: auto;
 }
 
 /* To-Do Append */
-input[type="text"] {
+form {
+    width: 640px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+form input {
     font-family: 'Tangerine', cursive;
     font-size: 40px;
     width: 565px;
@@ -79,21 +85,11 @@ input[type="text"] {
     text-indent: 10px;
 }
 
-input[type="text"]:focus {
+form input:focus {
     outline: none;
 }
 
-#to-do-append {
-    width: 640px;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-#append-button {
-    border: none;
-    background: none;
-    cursor: pointer;
+form button {
     width: 32px;
     height: 32px;
     margin-left: auto;
