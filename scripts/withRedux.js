@@ -2,9 +2,9 @@
 function listReducer(tasks = [], action) {
     switch (action.type) {
         case "addTask":
-            let id = tasks.reduce((maxId, {id}) => id > maxId ? id : maxId, 0) + 1;
+            let id = task.length ? tasks.reduce((maxId, {id}) => id > maxId ? id : maxId, 0) + 1 : 0;
             tasks.push({
-                id: tasks.length ? id : 0,
+                id,
                 value: action.task
             });
             return tasks;
@@ -21,43 +21,37 @@ function listRender() {
     const tasks = store.getState();
     const items = list.querySelectorAll("li");
     
-    // if the state changed
-    if (tasks.length != items.length) {
-
-        // check if there's a deleted task
-        const ids = tasks.map(task => task.id);
-        for (let item of items) {
-            const id = parseInt(item.getAttribute("id"), 10);
-            if (!ids.includes(id)) {
-                item.remove();
-                return;
-            }
+    // check if there's a deleted task
+    const ids = tasks.map(task => task.id);
+    for (let item of items) {
+        const id = parseInt(item.getAttribute("id"), 10);
+        if (!ids.includes(id)) {
+            item.remove();
+            return;
         }
-
-        // if nothing was deleted, that means we need to add a new task
-        const task = tasks[tasks.length - 1];
-        const item = document.createElement("li");
-        item.setAttribute("class", "to-do-item");
-        item.setAttribute("id", task.id.toString());
-        // checkbox
-        const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        item.appendChild(checkbox);
-        // label
-        const label = document.createElement("label");
-        label.textContent = task.value;
-        item.appendChild(label);
-        // delete button
-        const del = document.createElement("button");
-        del.setAttribute("class", "delete-button");
-        del.innerHTML = "<img src=\"images/remove.png\">";
-        del.addEventListener("click", () => {
-            store.dispatch({id: task.id, type: "deleteTask"});
-        }); 
-        item.appendChild(del);
-
-        list.appendChild(item);
     }
+
+    // if nothing was deleted, that means we need to add a new task
+    const task = tasks[tasks.length - 1];
+    const item = document.createElement("li");
+    item.setAttribute("id", task.id.toString());
+    // checkbox
+    const checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    item.appendChild(checkbox);
+    // label
+    const label = document.createElement("label");
+    label.textContent = task.value;
+    item.appendChild(label);
+    // delete button
+    const del = document.createElement("button");
+    del.innerHTML = "<img src=\"images/remove.png\">";
+    del.addEventListener("click", () => {
+        store.dispatch({id: task.id, type: "deleteTask"});
+    }); 
+    item.appendChild(del);
+
+    list.appendChild(item);
 }
 
 
@@ -67,8 +61,8 @@ const store = Redux.createStore(listReducer);
 
 // binding elements
 const list = document.querySelector("ul");
-const form = document.getElementById("to-do-append");
-const input = document.getElementById("append-input");
+const form = document.querySelector("form");
+const input = document.querySelector("input");
 
 
 // setting functionality to the add-task form
